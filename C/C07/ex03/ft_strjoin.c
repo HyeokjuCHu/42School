@@ -6,45 +6,101 @@
 /*   By: hyeokwon <hyeokwon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 13:45:28 by hyeokwon          #+#    #+#             */
-/*   Updated: 2025/02/06 14:02:47 by hyeokwon         ###   ########.fr       */
+/*   Updated: 2025/02/10 13:37:21 by hyeokwon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
+//#include <stdio.h>
+int	ft_strlen(char *str)
+{
+	int	cnt;
+
+	cnt = 0;
+	while (*str)
+	{
+		cnt++;
+		str++;
+	}
+	return (cnt);
+}
+
+int	calculate_total_length(int size, char **strs, char *sep)
+{
+	int	total_len;
+	int	i;
+
+	total_len = 0;
+	i = 0;
+	while (i < size)
+		total_len += ft_strlen(strs[i++]);
+	if (size > 1)
+		total_len += ft_strlen(sep) * (size - 1);
+	return (total_len);
+}
+
+void	concat_strings(char *result, int size, char **strs, char *sep)
+{
+	int	i;
+	int	k;
+	int	j;
+
+	i = 0;
+	k = 0;
+	while (i < size)
+	{
+		j = 0;
+		while (strs[i][j])
+			result[k++] = strs[i][j++];
+		if (i < size - 1)
+		{
+			j = 0;
+			while (sep[j])
+				result[k++] = sep[j++];
+		}
+		i++;
+	}
+	result[k] = '\0';
+}
 
 char	*ft_strjoin(int size, char **strs, char *sep)
 {
-	char	*res;
-	int		len;
-	int		i;
-	int		j;
-	int		k;
+	char	*result;
+	int		total_len;
 
-	len = 0;
-	i = -1;
-	j = 0;
-	k = 0;
-	if (!size)
-		return (malloc(1));
-	while (++i < size)
+	if (size == 0)
 	{
-		j = -1;
-		while (strs[i][++j])
-			len++;
-		len += i < size - 1 ? (j = -1, while (sep[++j])) : 0;
+		result = (char *)malloc(1);
+		if (!result)
+			return (NULL);
+		result[0] = '\0';
+		return (result);
 	}
-	if (!(res = malloc(len + 1)))
+	total_len = calculate_total_length(size, strs, sep);
+	result = (char *)malloc(sizeof(char) * (total_len + 1));
+	if (!result)
 		return (NULL);
-	i = -1;
-	while (++i < size)
-	{
-		j = -1;
-		while (strs[i][++j])
-			res[k++] = strs[i][j];
-		j = -1;
-		while (sep[++j] && i < size - 1)
-			res[k++] = sep[j];
-	}
-	res[k] = 0;
-	return (res);
+	concat_strings(result, size, strs, sep);
+	return (result);
 }
+/*
+int	main(void)
+{
+	char *strs[] = {"Hello", "World", "42"};
+	char *sep = ",";
+	int size = 3;
+	char *result;
+
+	result = ft_strjoin(size, strs, sep);
+	if (result)
+	{
+		printf("Joined string: %s\n", result);
+		free(result);
+	}
+	else
+	{
+		printf("Memory allocation failed\n");
+	}
+	return (0);
+}
+*/

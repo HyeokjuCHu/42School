@@ -6,12 +6,12 @@
 /*   By: hyeokwon <hyeokwon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 13:35:34 by Hyeokwon          #+#    #+#             */
-/*   Updated: 2025/02/06 13:46:44 by hyeokwon         ###   ########.fr       */
+/*   Updated: 2025/02/10 13:40:03 by hyeokwon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-
+//#include <stdio.h>
 int	*ft_range(int min, int max)
 {
 	int	i;
@@ -35,3 +35,30 @@ int	*ft_range(int min, int max)
 	}
 	return (arr);
 }
+/*
+int	main(void)
+{
+	int *range;
+	int min = 3;
+	int max = 8;
+	int size;
+	int i;
+
+	range = ft_range(min, max);
+	if (range == NULL)
+	{
+		printf("Empty range or memory allocation failed\n");
+		return (1);
+	}
+
+	size = max - min;
+	printf("Generated range: ");
+	for (i = 0; i < size; i++)
+	{
+		printf("%d ", range[i]);
+	}
+	printf("\n");
+
+	free(range);
+	return (0);
+}*/

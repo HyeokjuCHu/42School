@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Hyeokwon <khj6330865@naver.com>            +#+  +:+       +#+        */
+/*   By: hyeokwon <hyeokwon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 22:33:57 by Hyeokwon          #+#    #+#             */
-/*   Updated: 2025/02/04 11:53:54 by Hyeokwon         ###   ########.fr       */
+/*   Updated: 2025/02/10 13:40:43 by hyeokwon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include <stdio.h>
+//#include <stdio.h>
 
 char	*ft_strdup(char *src)
 {
@@ -34,3 +34,22 @@ char	*ft_strdup(char *src)
 	dup[i] = '\0';
 	return (dup);
 }
+/*
+int	main(void)
+{
+	char *src = "Hello, World!";
+	char *dup;
+
+	dup = ft_strdup(src);
+	if (dup == NULL)
+	{
+		printf("Memory allocation failed\n");
+		return (1);
+	}
+
+	printf("Original string: %s\n", src);
+	printf("Duplicated string: %s\n", dup);
+
+	free(dup);
+	return (0);
+}*/
